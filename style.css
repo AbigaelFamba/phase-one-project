@@ -1,0 +1,25 @@
+<style>
+        /* CSS styles for the artwork cards */
+        .artwork-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .artwork-title {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .artist {
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .thumbnail {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 10px;
+        }
+    </style>

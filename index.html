@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head    >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artworks Related to Cats</title>
+
+</head>
+<body>
+    <h1>Artworks Related to Cats</h1>
+    <div id="artworks"></div>
+
+    <script>
+        // JavaScript code to fetch and display artwork information
+        fetch('https://api.artic.edu/api/v1/artworks/search?q=cats')
+            .then(response => response.json())
+            .then(data => {
+                const artworks = data.data;
+                const artworksDiv = document.getElementById('artworks');
+                artworks.forEach(artwork => {
+                    const artworkDiv = document.createElement('div');
+                    artworkDiv.classList.add('artwork-card');
+
+                    // Display artwork information with styling
+                    artworkDiv.innerHTML = `
+                        <h2 class="artwork-title">${artwork.title}</h2>
+                        <p class="artist">Artist: ${artwork.artist_title}</p>
+                        <img class="thumbnail" src="${artwork.thumbnail.url}" alt="${artwork.title}">
+                    `;
+                    artworksDiv.appendChild(artworkDiv);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    </script>
+</body>
+</html>
+
