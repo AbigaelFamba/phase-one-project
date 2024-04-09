@@ -3,72 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artworks Related to Cats</title>
+    <title>Artworks from the Art Institute of Chicago</title>
+    <style>
+        .artwork {
+            margin-bottom: 20px;
+        }
+        .artwork img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-
-    <h1>Artworks Related to Cats</h1>
+    <h1>Artworks from the Art Institute of Chicago</h1>
     <div id="artworks"></div>
 
-    <h2>Cat on a balustrade</h2>
-    <p>Wojciech Kumpicki</p>
-    <img src="https://images.pexels.com/photos/2071873/pexels-photo-2071873.jpeg?auto=compress&cs=tinysrgb&w=400" alt="cat on bulastarade" width="200" height="300">
-
-
-    <h2>Girl with cat</h2>
-    <p>Eugenia Remark</p>
-    <img src="https://images.pexels.com/photos/14558546/pexels-photo-14558546.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Girl with cat" width="200" height="300">
-
-
-    <h2>Cat eating</h2>
-    <p>Cottonbro Studio</p>
-    <img src="https://images.pexels.com/photos/6869652/pexels-photo-6869652.jpeg?auto=compress&cs=tinysrgb&w=400" alt="cat eating" width="200" height="300">
-
-
-   <h2>Cat on a cushion</h2>
-   <p>Vedanti</p>
-   <img src="https://images.pexels.com/photos/5584625/pexels-photo-5584625.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Cat on a cushion">
-
-
-   <h2>Two cats making up</h2>
-   <p>Arina Krasnikova</p>
-   <img src="https://images.pexels.com/photos/7725998/pexels-photo-7725998.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Two cats making up">
-
-
-   <h2>Cat in water</h2>
-   <p>zhang kaiyv</p>
-    <img src="https://images.pexels.com/photos/6963403/pexels-photo-6963403.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Cat in water">
-   
-
-    <h2>Cat in museum</h2>
-    <p>Eftodii Aurelia</p>
-    <img src="https://images.pexels.com/photos/735423/pexels-photo-735423.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Cat in museum">
-    
-
-   <h2>Cat with owner</h2>
-   <p>Sam Lion</p>
-   <img src="https://images.pexels.com/photos/6001183/pexels-photo-6001183.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Cat with owner">
-
-
     <script>
-        // JavaScript code to fetch and display artwork information
-        fetch('https://api.artic.edu/api/v1/artworks/search?q=cats')
+        // Fetch artworks from the API
+        fetch('https://api.artic.edu/api/v1/artworks/search')
             .then(response => response.json())
             .then(data => {
+                // Get the artworks array from the response
                 const artworks = data.data;
-                const artworksDiv = document.getElementById('artworks');
+
+                // Get the container element where artworks will be displayed
+                const artworksContainer = document.getElementById('artworks');
+
+                // Loop through the artworks and create HTML elements to display each artwork
                 artworks.forEach(artwork => {
+                    // Create div element for each artwork
                     const artworkDiv = document.createElement('div');
-                    artworkDiv.innerHTML = `
-                        <h2>${artwork.title}</h2>
-                        <p>Artist: ${artwork.artist_title}</p>
-                        <img src="${artwork.thumbnail.url}" alt="${artwork.title}">
-                    `;
-                    artworksDiv.appendChild(artworkDiv);
+                    artworkDiv.classList.add('artwork');
+
+                    // Create heading element for artwork title
+                    const titleHeading = document.createElement('h2');
+                    titleHeading.textContent = artwork.title;
+                    artworkDiv.appendChild(titleHeading);
+
+                    // Create paragraph element for artist information
+                    const artistParagraph = document.createElement('p');
+                    artistParagraph.textContent = `Artist: ${artwork.artist_title}`;
+                    artworkDiv.appendChild(artistParagraph);
+
+                    // Create image element for artwork thumbnail
+                    const imageElement = document.createElement('img');
+                    imageElement.src = artwork.thumbnail.url;
+                    imageElement.alt = artwork.title;
+                    artworkDiv.appendChild(imageElement);
+
+                    // Append the artwork div to the container
+                    artworksContainer.appendChild(artworkDiv);
                 });
             })
             .catch(error => {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching artworks:', error);
             });
     </script>
 </body>
