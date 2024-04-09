@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head    >
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artworks Related to Cats</title>
-
 </head>
 <body>
     <h1>Artworks Related to Cats</h1>
@@ -19,13 +18,10 @@
                 const artworksDiv = document.getElementById('artworks');
                 artworks.forEach(artwork => {
                     const artworkDiv = document.createElement('div');
-                    artworkDiv.classList.add('artwork-card');
-
-                    // Display artwork information with styling
                     artworkDiv.innerHTML = `
-                        <h2 class="artwork-title">${artwork.title}</h2>
-                        <p class="artist">Artist: ${artwork.artist_title}</p>
-                        <img class="thumbnail" src="${artwork.thumbnail.url}" alt="${artwork.title}">
+                        <h2>${artwork.title}</h2>
+                        <p>Artist: ${artwork.artist_title}</p>
+                        <img src="${artwork.thumbnail.url}" alt="${artwork.title}">
                     `;
                     artworksDiv.appendChild(artworkDiv);
                 });
@@ -36,4 +32,3 @@
     </script>
 </body>
 </html>
-
