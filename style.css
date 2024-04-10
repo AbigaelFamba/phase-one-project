@@ -29,7 +29,7 @@ h1 {
 
 /* Style for artwork titles */
 .artwork h2 {
-    color: beige; /* dark gray */
+    color: palevioletred; /* dark gray */
     font-size: 1.2em;
     margin-bottom: 10px;
 }
