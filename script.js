@@ -1,4 +1,4 @@
-javascript
+
 // Variables to keep track of current page and artworks
 let currentPage = 1;
 const artworksPerPage = 10; // Number of artworks to display per page
