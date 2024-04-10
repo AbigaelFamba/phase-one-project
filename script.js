@@ -1,9 +1,8 @@
-
 // Variables to keep track of current page and artworks
 let currentPage = 1;
 const artworksPerPage = 10; // Number of artworks to display per page
 let totalArtworks = 0;
-let artworks = [];
+let artwork = [];
 
 // Function to fetch artworks from the API based on page number
 function fetchArtworks(page) {

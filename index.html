@@ -6,6 +6,13 @@
     <title>Artworks from the Metropolitan Museum of Art</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <style>
+        /* Style for like and dislike button */
+        .like-dislike-button {
+            margin-right: 10px;
+            cursor: pointer
+        }
+    </style>
 
 </head>
 <body>
@@ -71,7 +78,7 @@
                 const artworks = data.data;
 
                 // Get the container element where artworks will be displayed
-                const artworksContainer = document.getElementById('artworks');
+                const artworksContainer = document.getElementById('artwork');
 
                 // Loop through the artworks and create HTML elements to display each artwork
                 artworks.forEach(artwork => {
@@ -95,12 +102,32 @@
                     imageElement.alt = artwork.title;
                     artworkDiv.appendChild(imageElement);
 
+                    // Create like and dislike buttons
+                    const likeButton = document.createElement('button');
+                    likeButton.classList.add('like-dislike-button');
+                    likeButton.textContent = 'Like';
+                    likeButton.addEventListener('click', () => {
+                        // Placeholder for like functionality
+                        console.log('Liked:', artwork.title);
+                    });
+                    artworkDiv.appendChild(likeButton);
+
+                    const dislikeButton = document.createElement('button');
+                    dislikeButton.classList.add('like-dislike-button');
+                    dislikeButton.textContent = 'Dislike';
+                    dislikeButton.addEventListener('click', () => {
+                        // Placeholder for dislike functionality
+                        console.log('Disliked:', artwork.title);
+                    });
+                    artworkDiv.appendChild(dislikeButton);
+
+
                     // Append the artwork div to the container
                     artworksContainer.appendChild(artworkDiv);
                 });
             })
             .catch(error => {
-                console.error('Error fetching artworks:', error);
+                console.error('Error fetching artwork:', error);
             });
     </script>
 </body>
