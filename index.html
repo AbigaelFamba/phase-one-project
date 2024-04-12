@@ -3,153 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artworks from the Metropolitan Museum of Art</title>
+    <title>Random Artwork picture viewer</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <style>
-        /* Style for like and dislike button */
-        .like-dislike-button {
-            margin-right: 10px;
-            cursor: pointer
-        }
-    </style>
-
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
- <div>
-    <h1>Artwork From The Metropolitan Museum Of art</h1>
+    <h1>Artwork from the Metropolitan Museum of Art</h1>
+    <div id="artwork-container">
+        <!-- Placeholder for images - optional -->
+        <div id="image-placeholder"></div>
 
-    <h2>Interior of aged mansory building</h2>
-    <p>Charlotte May</p>
-    <img src="https://images.pexels.com/photos/5825377/pexels-photo-5825377.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Interior of aged mansory building">
-    <button type="button" class="btn btn-primary btn-sm">like</button>
-        <button type="button" class="btn btn-secondary btn-sm">dislike</button>
-    
+        <!-- Button to generate images -->
+        <button id="imagesbtn">Generate Pics</button> 
+    </div>
 
-    <h2>Entrance near sculptures</h2>
-    <p>Ekaterina Astakhova</p>
-    <img src="https://images.pexels.com/photos/3166710/pexels-photo-3166710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Entrance near sculptures">
-    <button type="button" class="btn btn-primary btn-sm">like</button>
-    <button type="button" class="btn btn-secondary btn-sm">dislike</button>
-
-
-    <h2>Pieces of sculptures in the museum</h2>
-    <p>Umut Çakır</p>
-    <img src="https://images.pexels.com/photos/9337688/pexels-photo-9337688.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pieces of  sculptures in the museum">
-    <button type="button" class="btn btn-primary btn-sm">like</button>
-    <button type="button" class="btn btn-secondary btn-sm">dislike</button>
-
-
-    <h2>Golden statue of pharaoh</h2>
-    <p>Nici Gottstein</p>
-    <img src="https://images.pexels.com/photos/14681316/pexels-photo-14681316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Golden statue of pharaoh">
-    <button type="button" class="btn btn-primary btn-sm">like</button>
-    <button type="button" class="btn btn-secondary btn-sm">dislike</button>
-
-
-    <h2>Ancient statues in museum</h2>
-    <p>Kübra Zehra</p>
-    <img src="https://images.pexels.com/photos/14548826/pexels-photo-14548826.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Ancient statues in museum">
-    <button type="button" class="btn btn-primary btn-sm">like</button>
-    <button type="button" class="btn btn-secondary btn-sm">dislike</button>
-
-
-    <h2>A woman sitting beside statue</h2>
-    <p>cottonbro studio</p>
-    <img src="https://images.pexels.com/photos/3778550/pexels-photo-3778550.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="A woman sitting beside statue">
-    <button type="button" class="btn btn-primary btn-sm">like</button>
-    <button type="button" class="btn btn-secondary btn-sm">dislike</button>
-
-
-    <h2>Art gallery with wooden walls</h2>
-    <p>Gül Işık</p>
-    <img src="https://images.pexels.com/photos/9482005/pexels-photo-9482005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Art gallery with wooden walls">
-    <button type="button" class="btn btn-primary btn-sm">like</button>
-    <button type="button" class="btn btn-secondary btn-sm">dislike</button>
-
-
-    <h2>Paintings in the museum</h2>
-    <p>Matheus Viana</p>
-    <img src="https://images.pexels.com/photos/2372979/pexels-photo-2372979.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Paintings in the museum">
-    <button type="button" class="btn btn-primary btn-sm">like</button>
-    <button type="button" class="btn btn-secondary btn-sm">dislike</button>
-
-
-    <h2>Famous museum with columns</h2>
-    <p>Charles Parker</p>
-    <img src="https://images.pexels.com/photos/5845467/pexels-photo-5845467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Famous museum with columns"> 
-    <button type="button" class="btn btn-primary btn-sm">like</button>
-    <button type="button" class="btn btn-secondary btn-sm">dislike</button>
-
-
-    <h2>Man sitting in museum</h2>
-    <p>Jill Evans</p>
-    <img src="https://images.pexels.com/photos/2099640/pexels-photo-2099640.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Man sitting in museum">
-    <button type="button" class="btn btn-primary btn-sm">like</button>
-    <button type="button" class="btn btn-secondary btn-sm">dislike</button>
-</div>
-
-
-    <script>
-        // Fetch artworks from the API
-        fetch('https://api.artic.edu/api/v1/artworks/search')
-            .then(response => response.json())
-            .then(data => {
-                // Get the artworks array from the response
-                const artworks = data.data;
-
-                // Get the container element where artworks will be displayed
-                const artworksContainer = document.getElementById('artwork');
-
-                // Loop through the artworks and create HTML elements to display each artwork
-                artworks.forEach(artwork => {
-                    // Create div element for each artwork
-                    const artworkDiv = document.createElement('div');
-                    artworkDiv.classList.add('artwork');
-
-                    // Create heading element for artwork title
-                    const titleHeading = document.createElement('h2');
-                    titleHeading.textContent = artwork.title;
-                    artworkDiv.appendChild(titleHeading);
-
-                    // Create paragraph element for artist information
-                    const artistParagraph = document.createElement('p');
-                    artistParagraph.textContent = `Artist: ${artwork.artist_title}`;
-                    artworkDiv.appendChild(artistParagraph);
-
-                    // Create image element for artwork thumbnail
-                    const imageElement = document.createElement('img');
-                    imageElement.src = artwork.thumbnail.url;
-                    imageElement.alt = artwork.title;
-                    artworkDiv.appendChild(imageElement);
-
-                    // Create like and dislike buttons
-                    const likeButton = document.createElement('button');
-                    likeButton.classList.add('like-dislike-button');
-                    likeButton.textContent = 'Like';
-                    likeButton.addEventListener('click', () => {
-                        // Placeholder for like functionality
-                        console.log('Liked:', artwork.title);
-                    });
-                    artworkDiv.appendChild(likeButton);
-
-                    const dislikeButton = document.createElement('button');
-                    dislikeButton.classList.add('like-dislike-button');
-                    dislikeButton.textContent = 'Dislike';
-                    dislikeButton.addEventListener('click', () => {
-                        // Placeholder for dislike functionality
-                        console.log('Disliked:', artwork.title);
-                    });
-                    artworkDiv.appendChild(dislikeButton);
-
-
-                    // Append the artwork div to the container
-                    artworksContainer.appendChild(artworkDiv);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching artwork:', error);
-            });
-    </script>
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> 
+    <script src="script.js"></script>
 </body>
 </html>
