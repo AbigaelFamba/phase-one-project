@@ -40,13 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (let i = 0; i < catImg.length; i++) {
             const imageWrapper = document.createElement('div');
-            imageWrapper.className = 'image-wrapper';
+            imageWrapper.className = 'artwork'; // Added artwork class here
+
+            const imgWrapper = document.createElement('div'); // Container for image
+            imgWrapper.className = 'image-wrapper'; // Added image-wrapper class here
 
             const imgElement = document.createElement('img');
             imgElement.src = catImg[i].thumbnail.lqip;
             imgElement.alt = 'cat images';
             imgElement.style.width = '200px';
             imgElement.style.height = '200px';
+
+            // Append image to the image wrapper
+            imgWrapper.appendChild(imgElement);
 
             // Create like button
             const likeButton = document.createElement('button');
@@ -68,12 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 dislikeButton.style.backgroundColor = 'red';
             });
 
-            // Append elements to image wrapper
-            imageWrapper.appendChild(imgElement);
+            // Append like and dislike buttons below the image
+            imageWrapper.appendChild(imgWrapper);
             imageWrapper.appendChild(likeButton);
             imageWrapper.appendChild(dislikeButton);
 
-            // Append image wrapper to container
+            // Append the wrapper div to the container
             imgContainer.appendChild(imageWrapper);
         }
     }
